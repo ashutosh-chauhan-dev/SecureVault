@@ -16,8 +16,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install OpenSSL
+        shell: powershell
+        run: |
+          choco install openssl -y --no-progress
+          $opensslRoot = (Get-AppInstallLocation OpenSSL-Win)
+          "OPENSSL_ROOT_DIR=$opensslRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
+      - name: Verify OpenSSL
+        shell: powershell
+        run: |
+          openssl version
+          Write-Host "OPENSSL_ROOT_DIR=$env:OPENSSL_ROOT_DIR"
+
       - name: Configure CMake
-        run: cmake -S . -B build
+        run: cmake -S . -B build -DOPENSSL_ROOT_DIR="$env:OPENSSL_ROOT_DIR"
 
       - name: Build SecureVault
         run: cmake --build build --config Release
