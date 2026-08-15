@@ -1,0 +1,43 @@
+# Build directory
+build/
+bin/
+out/
+
+# Binary executables and object files
+*.exe
+*.o
+*.obj
+*.dll
+*.a
+*.lib
+*.so
+*.dylib
+
+# Data & temporary vault files
+vault.dat
+manager_test.dat
+test_vault.dat
+vault_old.dat
+test.txt
+vault.txt
+*.dat
+
+# Temporary test & debug artifacts
+runtime_in.txt
+runtime_out.txt
+runtime_err.txt
+test_in.txt
+test_out.txt
+*.log
+
+# IDE & Editor files
+.vs/
+.vscode/
+*.user
+*.suo
+.idea/
+
+# Backup & historical files
+backup/
+*_backup.cpp
+main_phase1_before_input_fix.cpp
